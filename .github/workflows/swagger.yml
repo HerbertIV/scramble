@@ -3,7 +3,7 @@ name: Swagger
 on:
   push:
     branches:
-      [ main ]
+      - main
 
 jobs:
   deploy:
@@ -11,14 +11,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Swagger ui action
-        id: swagger-ui-action
-        uses: pjoc-team/swagger-ui-action@v0.0.2
+      - name: Generate Swagger UI
+        uses: Legion2/swagger-ui-action@v1
         with:
-          dir: './'
-          pattern: 'api.json'
-          debug: 'true'
-          url: 'apis/api.json'
+          output: swagger-ui
+          spec-file: api.json
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
