@@ -14,7 +14,7 @@ jobs:
         run: npm install -g redoc-cli  # Instalacja ReDoc CLI
 
       - name: Generate ReDoc
-        run: redoc-cli bundle -o docs/index.html ./api.json  # Generowanie dokumentacji ReDoc z pliku specyfikacji API
+        run: redoc-cli bundle -o ./index.html ./api.json  # Generowanie dokumentacji ReDoc z pliku specyfikacji API
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
