@@ -10,12 +10,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Generate Swagger UI
-        uses: Legion2/swagger-ui-action@v1.2.0
-        with:
-          output: swagger-ui
-          spec-file: "api.json"
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install ReDoc CLI
+        run: npm install -g redoc-cli  # Instalacja ReDoc CLI
+
+      - name: Generate ReDoc
+        run: redoc-cli bundle -o docs/index.html ./api.json  # Generowanie dokumentacji ReDoc z pliku specyfikacji API
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
