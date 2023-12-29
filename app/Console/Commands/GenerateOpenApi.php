@@ -27,6 +27,6 @@ class GenerateOpenApi extends Command
      */
     public function handle(Generator $generator)
     {
-        Storage::disk('public')->put('api.json', json_encode($generator()));
+        file_put_contents(public_path('../api.json'), json_encode($generator()));
     }
 }
